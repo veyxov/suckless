@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+static char *font = "Fira code nerd font:pixelsize=22:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -91,47 +91,42 @@ char *termname = "st-256color";
  *
  *	stty tabs
  */
-unsigned int tabspaces = 8;
+unsigned int tabspaces = 4;
+/* bg opacity */
+float alpha = 0.8;
+
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
+  /* 8 normal colors */
+  [0] = "#1d2021", /* hard contrast: #1d2021 / soft contrast: #32302f */
+  [1] = "#ea6962", /* red     */
+  [2] = "#a9b665", /* green   */
+  [3] = "#d8a657", /* yellow  */
+  [4] = "#7daea3", /* blue    */
+  [5] = "#d3869b", /* magenta */
+  [6] = "#89b482", /* cyan    */
+  [7] = "#d4be98", /* white   */
 
-	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
-
-	[255] = 0,
-
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
-	"gray90", /* default foreground colour */
-	"black", /* default background colour */
+  /* 8 bright colors */
+  [8]  = "#928374", /* black   */
+  [9]  = "#ef938e", /* red     */
+  [10] = "#bbc585", /* green   */
+  [11] = "#e1bb7e", /* yellow  */
+  [12] = "#9dc2ba", /* blue    */
+  [13] = "#e1acbb", /* magenta */
+  [14] = "#a7c7a2", /* cyan    */
+  [15] = "#e2d3ba", /* white   */
+  [16] = "#000000", /* white   */
 };
-
 
 /*
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 258;
-unsigned int defaultbg = 259;
-unsigned int defaultcs = 256;
+unsigned int defaultfg = 15;
+unsigned int defaultbg = 16;
+unsigned int defaultcs = 15;
 static unsigned int defaultrcs = 257;
 
 /*
@@ -177,10 +172,10 @@ static uint forcemousemod = ShiftMask;
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
 	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
-	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
-	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
-	{ ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~"} },
-	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
+	// { ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
+	// { XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
+	// { ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~"} },
+	// { XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
 };
 
 /* Internal keyboard shortcuts. */
@@ -189,18 +184,10 @@ static MouseShortcut mshortcuts[] = {
 
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
-	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
-	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
-	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
-	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
-	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
-	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
-	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
-	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
-	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
-	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
-	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+	{ MODKEY,              XK_k,           zoom,           {.f = +1} },
+	{ MODKEY,              XK_j,           zoom,           {.f = -1} },
+	{ MODKEY,              XK_c,           clipcopy,       {.i =  0} },
+	{ MODKEY,              XK_v,           clippaste,      {.i =  0} },
 };
 
 /*
