@@ -1,10 +1,3 @@
-/* See LICENSE file for copyright and license details. */
-
-/*
- * appearance
- *
- * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
- */
 static char *font = "Fira code nerd font:pixelsize=22:antialias=true:autohint=true";
 static int borderpx = 2;
 
@@ -92,42 +85,11 @@ char *termname = "st-256color";
  *	stty tabs
  */
 unsigned int tabspaces = 4;
+
 /* bg opacity */
-float alpha = 0.8;
+float alpha = 0.65;
 
-
-/* Terminal colors (16 first used in escape sequence) */
-static const char *colorname[] = {
-  /* 8 normal colors */
-  [0] = "#1d2021", /* hard contrast: #1d2021 / soft contrast: #32302f */
-  [1] = "#ea6962", /* red     */
-  [2] = "#a9b665", /* green   */
-  [3] = "#d8a657", /* yellow  */
-  [4] = "#7daea3", /* blue    */
-  [5] = "#d3869b", /* magenta */
-  [6] = "#89b482", /* cyan    */
-  [7] = "#d4be98", /* white   */
-
-  /* 8 bright colors */
-  [8]  = "#928374", /* black   */
-  [9]  = "#ef938e", /* red     */
-  [10] = "#bbc585", /* green   */
-  [11] = "#e1bb7e", /* yellow  */
-  [12] = "#9dc2ba", /* blue    */
-  [13] = "#e1acbb", /* magenta */
-  [14] = "#a7c7a2", /* cyan    */
-  [15] = "#e2d3ba", /* white   */
-  [16] = "#000000", /* white   */
-};
-
-/*
- * Default colors (colorname index)
- * foreground, background, cursor, reverse cursor
- */
-unsigned int defaultfg = 15;
-unsigned int defaultbg = 16;
-unsigned int defaultcs = 15;
-static unsigned int defaultrcs = 257;
+#include "curcol.h"
 
 /*
  * Default shape of cursor
@@ -172,10 +134,6 @@ static uint forcemousemod = ShiftMask;
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
 	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
-	// { ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
-	// { XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
-	// { ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~"} },
-	// { XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
 };
 
 /* Internal keyboard shortcuts. */
@@ -190,31 +148,6 @@ static Shortcut shortcuts[] = {
 	{ MODKEY,              XK_v,           clippaste,      {.i =  0} },
 };
 
-/*
- * Special keys (change & recompile st.info accordingly)
- *
- * Mask value:
- * * Use XK_ANY_MOD to match the key no matter modifiers state
- * * Use XK_NO_MOD to match the key alone (no modifiers)
- * appkey value:
- * * 0: no value
- * * > 0: keypad application mode enabled
- * *   = 2: term.numlock = 1
- * * < 0: keypad application mode disabled
- * appcursor value:
- * * 0: no value
- * * > 0: cursor application mode enabled
- * * < 0: cursor application mode disabled
- *
- * Be careful with the order of the definitions because st searches in
- * this table sequentially, so any XK_ANY_MOD must be in the last
- * position for a key.
- */
-
-/*
- * If you want keys other than the X11 function keys (0xFD00 - 0xFFFF)
- * to be mapped below, add them to this array.
- */
 static KeySym mappedkeys[] = { -1 };
 
 /*
