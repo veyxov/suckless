@@ -89,7 +89,7 @@ unsigned int tabspaces = 4;
 /* bg opacity */
 float alpha = 0.65;
 
-#include "curcol.h"
+#include "colors/curcol.h"
 
 /*
  * Default shape of cursor
