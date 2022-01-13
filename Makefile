@@ -26,7 +26,7 @@ stest: stest.o
 	$(CC) -o $@ stest.o $(LDFLAGS)
 
 clean:
-	rm -f dmenu stest $(OBJ) dmenu-$(VERSION).tar.gz
+	rm -f dmenu stest $(OBJ)
 
 install: all
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
@@ -42,4 +42,4 @@ uninstall:
 		$(DESTDIR)$(PREFIX)/bin/dmenu_run\
 		$(DESTDIR)$(PREFIX)/bin/stest\
 
-.PHONY: all options clean dist install uninstall
+.PHONY: all options clean install uninstall
