@@ -46,6 +46,9 @@ static const char *voldowncmd[]  = { "vol_ctl", "down", NULL };
 static const char *briupcmd[] = { "bri_ctl", "up", NULL };
 static const char *bridowncmd[] = { "bri_ctl", "down", NULL };
 
+// Screenshot
+static const char *scrshot[] = { "scrshot", NULL };
+
 // NOTE: Delete this if you don't use extra keys
 #include <X11/XF86keysym.h>
 static Key keys[] = {
@@ -75,6 +78,7 @@ static Key keys[] = {
     { 0, XF86XK_AudioLowerVolume, spawn,      {.v = voldowncmd}},
     { 0, XF86XK_MonBrightnessUp,  spawn,      {.v = briupcmd} },
     { 0, XF86XK_MonBrightnessDown,spawn,      {.v = bridowncmd}},
+    { 0, XK_Print,                spawn,      {.v = scrshot}},
 
     TAGKEYS(XK_1, 0)
     TAGKEYS(XK_2, 1)
