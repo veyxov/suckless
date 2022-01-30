@@ -10,7 +10,7 @@ static const char *fonts[]         = { "Fira code nerd font:size=8", "JoyPixels:
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5" };
 
-static const Rule rules[] = { { "Gimp", NULL, NULL, 0, 1, -1 }, };
+static const Rule rules[] = { };
 
 static const int nmaster     = 1;
 static const int resizehints = 0;
@@ -63,16 +63,16 @@ static Key keys[] = {
     { MODKEY,           XK_t,      setlayout,      {.v = &layouts[0]} },
     { MODKEY,           XK_m,      setlayout,      {.v = &layouts[2]} },
     { MODKEY,           XK_space,  setlayout,      {0} },
-    { MODKEY|ShiftMask, XK_space,  togglefloating, {0} },
     { MODKEY,           XK_f,      togglefullscr,  {0} },
-    { MODKEY,           XK_0,      view,           {.ui = ~0 } },
-    { MODKEY|ShiftMask, XK_0,      tag,            {.ui = ~0 } },
+    { MODKEY,           XK_0,      view,           {.ui = ~0} },
     { MODKEY,           XK_comma,  focusmon,       {.i = -1 } },
     { MODKEY,           XK_period, focusmon,       {.i = +1 } },
+    { MODKEY,           XK_q,      killclient,     {0}        }, 
     { MODKEY|ShiftMask, XK_comma,  tagmon,         {.i = -1 } },
     { MODKEY|ShiftMask, XK_period, tagmon,         {.i = +1 } },
+    { MODKEY|ShiftMask, XK_0,      tag,            {.ui = ~0 }},
+    { MODKEY|ShiftMask, XK_space,  togglefloating, {0} },
 
-    { 0, XF86XK_RFKill,           killclient, {0}             },
     { 0, XF86XK_AudioMute,        spawn,      {.v = mutecmd}  },
     { 0, XF86XK_AudioRaiseVolume, spawn,      {.v = volupcmd} },
     { 0, XF86XK_AudioLowerVolume, spawn,      {.v = voldowncmd}},
