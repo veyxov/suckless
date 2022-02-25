@@ -1,2 +1,2 @@
 #!/bin/sh
-dmenu_path | dmenu "$@" | ${SHELL:-"/bin/sh"} &
+j4-dmenu-desktop --dmenu="dmenu -l 48" --term="alacritty"
