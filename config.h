@@ -53,7 +53,7 @@ static const char *clipmenucmd[] = { "clipmenu", NULL };
 static const char *lockcmd[] = { "slock", NULL };
 
 // Screenshot
-static const char *scrshot[] = { "scrshot", NULL };
+static const char *scrshot[] = { "flameshot", "gui", NULL };
 
 // NOTE: Delete this if you don't use extra keys
 #include <X11/XF86keysym.h>
