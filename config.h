@@ -1,4 +1,5 @@
-static char *font = "Fira code nerd font:pixelsize=30:antialias=true:autohint=true";
+//static char *font = "Fira code nerd font:pixelsize=30:antialias=true:autohint=true";
+static char *font = "Jetbrains mono:pixelsize=30:antialias=true:autohint=true";
 static int borderpx = 2;
 
 static char *shell = "/bin/sh";
@@ -88,8 +89,8 @@ static MouseShortcut mshortcuts[] = {
 
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
-	{ MODKEY,              XK_k,           zoom,           {.f = +1} },
-	{ MODKEY,              XK_j,           zoom,           {.f = -1} },
+	{ MODKEY,              XK_u,           zoom,           {.f = +1} },
+	{ MODKEY,              XK_e,           zoom,           {.f = -1} },
 	{ MODKEY,              XK_c,           clipcopy,       {.i =  0} },
 	{ MODKEY,              XK_v,           clippaste,      {.i =  0} },
 };
