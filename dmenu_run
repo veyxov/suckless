@@ -1,2 +1,3 @@
 #!/bin/sh
-j4-dmenu-desktop --dmenu="dmenu -l 48" --term="alacritty"
+# j4-dmenu-desktop --dmenu="dmenu -l 48" --term="alacritty"
+cat ~/.config/dmenu/mymenu  | dmenu -l 48 "$@" | ${SHELL:-"/bin/sh"} &
