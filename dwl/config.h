@@ -8,7 +8,7 @@ static const float focuscolor[]            = {1.0, 0.0, 0.0, 1.0};
 static const float fullscreen_bg[]         = {0.1, 0.1, 0.1, 1.0};
 
 /* tagging - tagcount must be no greater than 31 */
-static const int tagcount = 9;
+static const int tagcount = 4;
 
 static const Rule rules[] = {
     { "TelegramDesktop",  NULL,       1 << 4,       0,           -1 },
@@ -41,8 +41,8 @@ static const struct xkb_rule_names xkb_rules = {
 	.options = NULL,
 };
 
-static const int repeat_rate = 25;
-static const int repeat_delay = 600;
+static const int repeat_rate = 70;
+static const int repeat_delay = 250;
 
 /* Trackpad */
 static const int tap_to_click = 1;
@@ -107,21 +107,21 @@ static const Key keys[] = {
 	/* modifier                  key                 function        argument */
 	{ MODKEY,                    XKB_KEY_s,          spawn,          {.v = menucmd} },
 	{ MODKEY,                    XKB_KEY_Return,     spawn,          {.v = termcmd} },
-	{ MODKEY,                    XKB_KEY_j,          focusstack,     {.i = +1} },
-	{ MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
-	// { MODKEY,                    XKB_KEY_i,          incnmaster,     {.i = +1} },
-	// { MODKEY,                    XKB_KEY_d,          incnmaster,     {.i = -1} },
-	// { MODKEY,                    XKB_KEY_h,          setmfact,       {.f = -0.05} },
-	// { MODKEY,                    XKB_KEY_l,          setmfact,       {.f = +0.05} },
+	{ MODKEY,                    XKB_KEY_r,          focusstack,     {.i = +1} },
+	// { MODKEY,                    XKB_KEY_k,          focusstack,     {.i = -1} },
+	//{ MODKEY,                    XKB_KEY_comma,          incnmaster,     {.i = +1} },
+	//{ MODKEY,                    XKB_KEY_perod,          incnmaster,     {.i = -1} },
+	{ MODKEY,                    XKB_KEY_comma,          setmfact,       {.f = -0.05} },
+	{ MODKEY,                    XKB_KEY_period,          setmfact,       {.f = +0.05} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,     zoom,           {0} },
 	{ MODKEY,                    XKB_KEY_Tab,        view,           {0} },
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_q,          killclient,     {0} },
+	{ MODKEY,                    XKB_KEY_q,          killclient,     {0} },
 	// { MODKEY,                    XKB_KEY_t,          setlayout,      {.v = &layouts[0]} },
 	// { MODKEY,                    XKB_KEY_f,          setlayout,      {.v = &layouts[1]} },
 	// { MODKEY,                    XKB_KEY_m,          setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                    XKB_KEY_space,      setlayout,      {0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_space,      togglefloating, {0} },
-	{ MODKEY,                    XKB_KEY_f,         togglefullscreen, {0} },
+	{ MODKEY,                    XKB_KEY_f,          togglefullscreen, {0} },
 	{ MODKEY,                    XKB_KEY_0,          view,           {.ui = ~0} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_parenright, tag,            {.ui = ~0} },
 	{ MODKEY,                    XKB_KEY_comma,      focusmon,       {.i = WLR_DIRECTION_LEFT} },
@@ -137,8 +137,7 @@ static const Key keys[] = {
 	/* Ctrl-Alt-Backspace and Ctrl-Alt-Fx used to be handled by X server */
 	{ WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_Terminate_Server, quit, {0} },
 #define CHVT(n) { WLR_MODIFIER_CTRL|WLR_MODIFIER_ALT,XKB_KEY_XF86Switch_VT_##n, chvt, {.ui = (n)} }
-	CHVT(1), CHVT(2), CHVT(3), CHVT(4), CHVT(5), CHVT(6),
-	CHVT(7), CHVT(8), CHVT(9), CHVT(10), CHVT(11), CHVT(12),
+	CHVT(1), CHVT(2), CHVT(3), CHVT(4)
 };
 
 static const Button buttons[] = {
