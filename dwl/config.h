@@ -11,7 +11,7 @@ static const float fullscreen_bg[]         = {0.1, 0.1, 0.1, 1.0};
 static const int tagcount = 9;
 
 static const Rule rules[] = {
-    {}
+    { "TelegramDesktop",  NULL,       1 << 4,       0,           -1 },
 };
 
 /* layout(s) */
